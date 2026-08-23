@@ -10,7 +10,7 @@
 --------------------------------------------------------------- */
 const firebaseConfig = window.FIREBASE_CONFIG || {};
 
-const VERSAO = "bora-v3";
+const VERSAO = "bora-v4";
 const SDK = "https://www.gstatic.com/firebasejs/10.12.5/";
 
 /* ---------- 2. CONSTANTES ---------- */
