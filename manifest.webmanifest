@@ -1,0 +1,20 @@
+{
+  "name": "Bora pro Carrinho?",
+  "short_name": "Bora?",
+  "description": "Escala de turnos do testemunho público com carrinho: participantes, locais, horários e mensagem pronta para o grupo.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F1F5FA",
+  "theme_color": "#2C5E99",
+  "categories": ["productivity", "lifestyle"],
+  "icons": [
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

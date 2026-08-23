@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Instalar · Bora pro Carrinho?</title>
+<meta name="description" content="Instale o Bora pro Carrinho? no celular e organize a escala dos turnos com carrinho." />
+<meta name="theme-color" content="#2C5E99" />
+<link rel="icon" href="favicon.png" />
+<link rel="apple-touch-icon" href="icone-180.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F1F5FA; --surface: #FFFFFF; --surface-2: #E9EFF7;
+    --primary: #2C5E99; --onprimary: #FFFFFF;
+    --text: #172432; --textsec: #5B6B7C; --border: #DEE6F0;
+  }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, button { font-family: "Poppins", "Inter", sans-serif; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  a { color: var(--primary); text-decoration: none; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 34px 22px 60px; }
+
+  .hero { text-align: center; }
+  .app-icon {
+    width: 88px; height: 88px; border-radius: 24px; margin: 0 auto 18px; display: block;
+    box-shadow: 0 16px 30px -14px rgba(23,36,50,.45);
+  }
+  h1 { font-size: 2.25rem; font-weight: 800; letter-spacing: -.025em; line-height: 1.08; }
+  .mark { color: var(--primary); }
+  .tagline { font-size: 1rem; color: var(--textsec); margin: 12px auto 0; max-width: 400px; }
+
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+    border-radius: 16px; padding: 15px 18px; font-weight: 700; font-size: 1rem;
+    background: var(--primary); color: var(--onprimary); margin-top: 22px;
+    box-shadow: 0 12px 24px -14px rgba(44,94,153,.9);
+  }
+  .btn.secundario { background: var(--surface); color: var(--primary); border: 1px solid var(--border); box-shadow: none; margin-top: 10px; }
+  .btn:active { transform: scale(.99); }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-top: 22px; }
+  .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--textsec); }
+  h2 { font-size: 1.125rem; font-weight: 700; margin: 6px 0 14px; }
+
+  .abas { display: flex; gap: 6px; background: var(--surface-2); padding: 4px; border-radius: 14px; margin-bottom: 16px; }
+  .aba { flex: 1; text-align: center; padding: 10px 0; border-radius: 10px; font-size: .875rem; font-weight: 600; color: var(--textsec); }
+  .aba.on { background: var(--surface); color: var(--primary); box-shadow: 0 1px 4px rgba(23,36,50,.1); }
+
+  ol { list-style: none; counter-reset: passo; }
+  ol li { counter-increment: passo; position: relative; padding-left: 40px; margin-bottom: 14px; font-size: .9375rem; }
+  ol li::before {
+    content: counter(passo); position: absolute; left: 0; top: 0;
+    width: 26px; height: 26px; border-radius: 9px; background: var(--surface-2); color: var(--primary);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .8125rem;
+    font-family: "Poppins", sans-serif;
+  }
+  ol li:last-child { margin-bottom: 0; }
+
+  .recursos { display: grid; gap: 10px; }
+  .recurso { display: flex; gap: 12px; align-items: flex-start; }
+  .recurso .ponto { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); margin-top: 8px; flex-shrink: 0; }
+  .recurso .rt { font-weight: 600; font-size: .9375rem; }
+  .recurso .rs { font-size: .84375rem; color: var(--textsec); }
+
+  .nota { font-size: .84375rem; color: var(--textsec); margin-top: 14px; }
+  footer { text-align: center; font-size: .8125rem; color: var(--textsec); margin-top: 34px; }
+  .escondido { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <img class="app-icon" src="icone-192.png" alt="Ícone do aplicativo" />
+    <h1><span class="mark">Bora</span> pro Carrinho<span class="mark">?</span></h1>
+    <p class="tagline">A escala dos turnos com carrinho no bolso: quem vai, onde, a que horas — e a mensagem pronta para mandar no grupo.</p>
+    <button class="btn" id="btnInstalar">Instalar no celular</button>
+    <a class="btn secundario" href="index.html">Abrir no navegador</a>
+    <p class="nota" id="notaInstalar">Se o botão acima não instalar, siga o passo a passo abaixo.</p>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Passo a passo</div>
+    <h2>Como instalar</h2>
+    <div class="abas">
+      <button class="aba on" data-aba="android">Android</button>
+      <button class="aba" data-aba="iphone">iPhone</button>
+    </div>
+
+    <ol id="passos-android">
+      <li>Abra esta página no <b>Chrome</b>.</li>
+      <li>Toque nos três pontinhos no canto superior direito.</li>
+      <li>Escolha <b>Instalar aplicativo</b> (ou "Adicionar à tela inicial").</li>
+      <li>Confirme. O ícone aparece junto com os outros aplicativos.</li>
+    </ol>
+
+    <ol id="passos-iphone" class="escondido">
+      <li>Abra esta página no <b>Safari</b>.</li>
+      <li>Toque no botão de compartilhar (o quadrado com a seta para cima).</li>
+      <li>Role a lista e escolha <b>Adicionar à Tela de Início</b>.</li>
+      <li>Toque em <b>Adicionar</b>, no canto superior direito.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">O que o app faz</div>
+    <h2>Feito para a escala do carrinho</h2>
+    <div class="recursos">
+      <div class="recurso"><span class="ponto"></span><div>
+        <div class="rt">Vários participantes por turno</div>
+        <div class="rs">Escolha quantas pessoas quiser numa lista em ordem alfabética.</div></div></div>
+      <div class="recurso"><span class="ponto"></span><div>
+        <div class="rt">Semana ou mês inteiro</div>
+        <div class="rs">Veja a agenda do jeito que preferir e toque num dia para abrir os turnos.</div></div></div>
+      <div class="recurso"><span class="ponto"></span><div>
+        <div class="rt">Mensagem pronta para o grupo</div>
+        <div class="rs">Copia a escala do dia, da semana ou do mês em texto limpo, sem emojis.</div></div></div>
+      <div class="recurso"><span class="ponto"></span><div>
+        <div class="rt">Sincroniza entre aparelhos</div>
+        <div class="rs">Entre com e-mail e senha e use o mesmo código de grupo para editar a mesma escala.</div></div></div>
+      <div class="recurso"><span class="ponto"></span><div>
+        <div class="rt">Do seu jeito</div>
+        <div class="rs">12 paletas de cor, modo escuro, 10 fontes e quatro tamanhos de letra.</div></div></div>
+      <div class="recurso"><span class="ponto"></span><div>
+        <div class="rt">Funciona sem internet</div>
+        <div class="rs">Os turnos ficam salvos no aparelho e sobem para a nuvem quando a conexão volta.</div></div></div>
+    </div>
+  </div>
+
+  <footer>Desenvolvido por Alan Correa ©</footer>
+</div>
+
+<script>
+  var prompt = null;
+  var botao = document.getElementById("btnInstalar");
+  var nota = document.getElementById("notaInstalar");
+
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    prompt = e;
+    nota.textContent = "Um toque e pronto.";
+  });
+
+  botao.addEventListener("click", function () {
+    if (prompt) {
+      prompt.prompt();
+      prompt.userChoice.then(function (r) {
+        if (r.outcome === "accepted") nota.textContent = "Instalado. Procure o ícone na tela inicial.";
+        prompt = null;
+      });
+    } else {
+      nota.textContent = "Seu navegador não abriu a instalação automática. Siga o passo a passo abaixo.";
+      document.querySelector(".card").scrollIntoView({ behavior: "smooth" });
+    }
+  });
+
+  window.addEventListener("appinstalled", function () {
+    nota.textContent = "Instalado. Procure o ícone na tela inicial.";
+  });
+
+  document.querySelectorAll("[data-aba]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var alvo = b.getAttribute("data-aba");
+      document.querySelectorAll("[data-aba]").forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on");
+      document.getElementById("passos-android").classList.toggle("escondido", alvo !== "android");
+      document.getElementById("passos-iphone").classList.toggle("escondido", alvo !== "iphone");
+    });
+  });
+
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.querySelector('[data-aba="iphone"]').click();
+  }
+</script>
+</body>
+</html>
