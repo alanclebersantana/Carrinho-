@@ -10,7 +10,7 @@
 --------------------------------------------------------------- */
 const firebaseConfig = window.FIREBASE_CONFIG || {};
 
-const VERSAO = "bora-v6";
+const VERSAO = "bora-v7";
 const SDK = "https://www.gstatic.com/firebasejs/10.12.5/";
 
 /* ---------- 2. CONSTANTES ---------- */
@@ -70,7 +70,12 @@ const ICONS = {
   copy:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>',
   cart:'<svg width="22" height="22" viewBox="0 0 100 100" ><g transform="rotate(8 50 52) translate(50 52) scale(0.9) translate(-50 -52)"><path d="M17 6h6v82h-6z" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M23 5h52v32H23z" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M21 40h54v12H21z" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M21 47.6h54" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M48.0 40v7.6" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M23 56h56v12H23z" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M23 63.6h56" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M41.7 56v7.6" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M60.3 56v7.6" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M25 72h58v12H25z" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M25 79.6h58" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M44.3 72v7.6" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M63.7 72v7.6" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path d="M21 88l7 4M75 87l-3 4" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><circle cx="31" cy="93" r="7.5" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/><circle cx="69" cy="93" r="5.5" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none"/></g></svg>',
   logout:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 17l5-5-5-5M20 12H9M11 3H6a2 2 0 00-2 2v14a2 2 0 002 2h5"/></svg>',
-  clock:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'
+  clock:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  caixa:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M3 8v8l9 4 9-4V8"/><path d="M12 12v8"/></svg>',
+  limpeza:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l7 7-4 4-7-7z"/><path d="M11 7L4 14v6h6l7-7"/></svg>',
+  sino:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 10-12 0c0 6-2 7-2 7h16s-2-1-2-7"/><path d="M10.5 20a2 2 0 003 0"/></svg>',
+  zap:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.5-4.6A8.6 8.6 0 1112 20.6a8.7 8.7 0 01-4.3-1.1L3 21z"/><path d="M8.9 8.4c.2-.5.4-.5.7-.5h.5c.2 0 .5 0 .7.5l.6 1.4c.1.3 0 .5-.1.7l-.4.5c-.2.2-.3.4-.1.7.5.8 1.2 1.5 2.1 1.9.3.1.5.1.7-.1l.5-.6c.2-.2.4-.2.6-.1l1.4.7c.3.1.5.3.5.6 0 1-.8 1.7-1.8 1.7-2.9-.2-5.4-2.7-5.7-5.6-.1-.7.2-1.3.8-1.8z"/></svg>',
+  calendario2:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>'
 };
 
 /* ---------- 3. UTILITÁRIOS ---------- */
@@ -134,16 +139,18 @@ async function copiar(txt) {
 
 /* ---------- 4. DADOS ---------- */
 const K_DB = "bora:db", K_CFG = "bora:cfg";
-let DB = { pes: [], loc: [], tur: [] };
+let DB = { pes: [], loc: [], tur: [], cui: [] };
 let cfg = {
   tema: "claro", paleta: "azul", fonte: "inter", tamanho: "md",
-  grupo: "", modoLocal: false, ultimoEmail: "", nome: ""
+  grupo: "", modoLocal: false, ultimoEmail: "", nome: "",
+  repDias: 15, limDias: 30, avisos: false,
+  msgTurno: "Ola {nome}, lembrete do turno com o carrinho: {dia}, das {inicio} as {fim}, em {local}. Ate la."
 };
 
 function carregar() {
   try { const d = JSON.parse(localStorage.getItem(K_DB) || "null"); if (d) DB = Object.assign(DB, d); } catch (e) {}
   try { const c = JSON.parse(localStorage.getItem(K_CFG) || "null"); if (c) cfg = Object.assign(cfg, c); } catch (e) {}
-  ["pes","loc","tur"].forEach(k => { if (!Array.isArray(DB[k])) DB[k] = []; });
+  ["pes","loc","tur","cui"].forEach(k => { if (!Array.isArray(DB[k])) DB[k] = []; });
 }
 function salvarLocal() { try { localStorage.setItem(K_DB, JSON.stringify(DB)); } catch (e) {} }
 function salvarCfg() { try { localStorage.setItem(K_CFG, JSON.stringify(cfg)); } catch (e) {} }
@@ -166,9 +173,41 @@ function turnosNoIntervalo(a, b) {
 function nomesDoTurno(t) {
   return (t.pes || []).map(id => (pes(id) || {}).nome).filter(Boolean).sort((a, b) => a.localeCompare(b, "pt-BR"));
 }
+/* ----- cuidados do carrinho: reposição de publicações e limpeza ----- */
+const CUIDADOS = {
+  reposicao: { nome: "Reposição de publicações", curto: "Reposição", campo: "repDias", padrao: 15 },
+  limpeza:   { nome: "Limpeza e manutenção",     curto: "Limpeza",   campo: "limDias", padrao: 30 }
+};
+function cuidadosDe(tipo) {
+  return vivos("cui").filter(c => c.tipo === tipo).sort((a, b) => b.data.localeCompare(a.data));
+}
+function ultimoCuidado(tipo) { return cuidadosDe(tipo)[0] || null; }
+function intervalo(tipo) {
+  const n = parseInt(cfg[CUIDADOS[tipo].campo], 10);
+  return n > 0 ? n : CUIDADOS[tipo].padrao;
+}
+function proximoCuidado(tipo) {
+  const u = ultimoCuidado(tipo);
+  if (!u) return null;
+  return iso(somaDias(deIso(u.data), intervalo(tipo)));
+}
+function diasAte(isoData) {
+  return Math.round((deIso(isoData) - deIso(hojeIso())) / 86400000);
+}
+function situacaoCuidado(tipo) {
+  const u = ultimoCuidado(tipo);
+  if (!u) return { estado: "sem", texto: "Nunca registrado" };
+  const prox = proximoCuidado(tipo);
+  const d = diasAte(prox);
+  if (d < 0) return { estado: "atrasado", texto: "Atrasado " + (-d) + (d === -1 ? " dia" : " dias"), prox: prox, ultimo: u };
+  if (d === 0) return { estado: "hoje", texto: "É hoje", prox: prox, ultimo: u };
+  if (d <= 3) return { estado: "perto", texto: "Em " + d + (d === 1 ? " dia" : " dias"), prox: prox, ultimo: u };
+  return { estado: "ok", texto: "Em " + d + " dias", prox: prox, ultimo: u };
+}
+
 function mesclar(remoto) {
   if (!remoto) return;
-  ["pes","loc","tur"].forEach(k => {
+  ["pes","loc","tur","cui"].forEach(k => {
     if (!Array.isArray(remoto[k])) return;
     const mapa = new Map();
     DB[k].forEach(i => mapa.set(i.id, i));
@@ -246,6 +285,7 @@ const estado = {
   buscaAberta: false,
   busca: "",
   cfgAberta: false,
+  cuidadosAberto: false,
   pronto: false,
   usuario: null,
   sync: "off",     // off | on | erro
@@ -346,6 +386,7 @@ function render() {
   let html = topbarHTML() + '<div class="screen" id="screen">' + telaHTML() + "</div>" + navbarHTML();
   if (estado.buscaAberta) html += buscaHTML();
   if (estado.cfgAberta) html += cfgHTML();
+  if (estado.cuidadosAberto) html += cuidadosHTML();
   app.innerHTML = html;
 
   if (estado.buscaAberta) {
@@ -472,9 +513,91 @@ function inicioHTML() {
       '<div class="card stat-card"><div class="stat-num">' + locaisOrdenados().length + '</div><div class="stat-label">Locais</div></div>' +
     "</div>" +
     '<div class="section-title">Esta semana</div>' + faixaSemanaHTML() +
+    cuidadosCardHTML() +
     '<div class="section-title">Próximos turnos</div>' +
     (proximos.length ? proximos.map(t => blocoTurno(t, { data: true })).join("")
       : '<div class="card empty-state">Nada marcado depois de hoje.</div>') +
+    "</div>";
+}
+
+/* ----- CUIDADOS DO CARRINHO ----- */
+function corSituacao(est) {
+  if (est === "atrasado") return "var(--danger)";
+  if (est === "hoje" || est === "perto") return "var(--primary)";
+  if (est === "sem") return "var(--textsec)";
+  return "var(--ok)";
+}
+function linhaCuidado(tipo) {
+  const s = situacaoCuidado(tipo);
+  const info = CUIDADOS[tipo];
+  const ultimo = s.ultimo ? "Última: " + fmtBr(s.ultimo.data) : "Nenhuma anotada ainda";
+  return '<button class="list-line" data-act="cuidados-abrir" data-tipo="' + tipo + '">' +
+      '<div class="row gap12" style="flex:1;min-width:0">' +
+        '<span class="li-icon" style="color:' + corSituacao(s.estado) + '">' + (tipo === "reposicao" ? ICONS.caixa : ICONS.limpeza) + "</span>" +
+        '<div style="min-width:0"><div class="ll-t">' + info.curto + "</div>" +
+        '<div class="ll-s">' + ultimo + "</div></div>" +
+      "</div>" +
+      '<div style="text-align:right;flex-shrink:0">' +
+        '<div class="ll-t" style="color:' + corSituacao(s.estado) + ';font-size:.8125rem">' + s.texto + "</div>" +
+        (s.prox ? '<div class="ll-s">' + fmtBr(s.prox) + "</div>" : "") +
+      "</div>" +
+    "</button>";
+}
+function cuidadosCardHTML() {
+  return '<div class="section-title">Cuidados do carrinho</div>' +
+    linhaCuidado("reposicao") + linhaCuidado("limpeza");
+}
+
+function cuidadosHTML() {
+  const tipo = estado.cuidadoTipo || "reposicao";
+  const info = CUIDADOS[tipo];
+  const s = situacaoCuidado(tipo);
+  const lista = cuidadosDe(tipo);
+
+  const abas = Object.keys(CUIDADOS).map(k =>
+    '<button class="cal-toggle-opt' + (k === tipo ? " selected" : "") + '" data-act="cuidado-aba" data-tipo="' + k + '">' +
+      CUIDADOS[k].curto + "</button>").join("");
+
+  const historico = lista.length
+    ? lista.map(c =>
+        '<button class="list-line" data-act="cuidado-editar" data-id="' + c.id + '">' +
+          '<div style="flex:1;min-width:0"><div class="ll-t">' + fmtBr(c.data) + " · " + esc(cap1(fmtLongo(deIso(c.data)).split(",")[0])) + "</div>" +
+          '<div class="ll-s">' + (c.obs ? esc(c.obs) : (c.por ? "por " + esc(c.por) : "sem observação")) + "</div></div>" +
+          ICONS.chevR + "</button>").join("")
+    : '<div class="empty-state">Nenhum registro ainda.<br><span style="font-size:.75rem">Anote a data da última vez para o app começar a avisar.</span></div>';
+
+  return '<div class="overlay">' +
+      '<div class="overlay-head">' +
+        '<button class="icon-btn" data-act="cuidados-fechar">' + ICONS.chevL + "</button>" +
+        '<div class="ttl">Cuidados do carrinho</div>' +
+      "</div>" +
+      '<div class="overlay-body">' +
+        '<div class="cal-toggle">' + abas + "</div>" +
+
+        '<div class="card" style="padding:16px">' +
+          '<div class="eyebrow">' + info.nome + "</div>" +
+          '<div style="font-size:1.375rem;font-weight:700;margin-top:6px;color:' + corSituacao(s.estado) + '">' + s.texto + "</div>" +
+          '<div class="ll-s" style="margin-top:4px">' +
+            (s.ultimo ? "Última em " + fmtBr(s.ultimo.data) + " · próxima prevista para " + fmtBr(s.prox) : "Registre a última vez para o app calcular a próxima") +
+          "</div>" +
+        "</div>" +
+
+        '<button class="btn btn-primary btn-block" style="margin-top:14px" data-act="cuidado-novo" data-tipo="' + tipo + '">' +
+          ICONS.plus + " Registrar " + (tipo === "reposicao" ? "reposição de hoje" : "limpeza de hoje") + "</button>" +
+
+        '<div class="group-label">Lembrete</div>' +
+        '<button class="list-line" data-act="cuidado-intervalo" data-tipo="' + tipo + '">' +
+          '<div><div class="ll-t">Repetir a cada</div>' +
+          '<div class="ll-s">' + intervalo(tipo) + " dias</div></div>" + ICONS.chevR + "</button>" +
+        '<button class="list-line" data-act="avisos"><div><div class="ll-t">Aviso no celular</div>' +
+          '<div class="ll-s">' + (cfg.avisos ? "ligado — avisa quando você abrir o app" : "desligado") + "</div></div>" + ICONS.sino + "</button>" +
+        (s.prox ? '<button class="list-line" data-act="cuidado-agenda" data-tipo="' + tipo + '">' +
+          '<div><div class="ll-t">Pôr no calendário do celular</div>' +
+          '<div class="ll-s">cria um lembrete em ' + fmtBr(s.prox) + "</div></div>" + ICONS.calendario2 + "</button>" : "") +
+
+        '<div class="group-label">Histórico</div>' + historico +
+        '<div class="hint" style="margin-top:16px">Os registros ficam junto com o resto da escala: quem usa o mesmo código de grupo vê as mesmas datas.</div>' +
+      "</div>" +
     "</div>";
 }
 
@@ -679,6 +802,12 @@ function cfgHTML() {
         '<div class="hint" style="margin-top:10px">O fundo do app acompanha a cor escolhida: um tom bem claro no modo claro, e preto com um toque da cor no modo escuro.</div>' +
         '<div class="group-label">Fonte</div><div class="font-list">' + fontes + "</div>" +
         '<div class="group-label">Tamanho da fonte</div><div class="size-row">' + tamanhos + "</div>" +
+        '<div class="group-label">Carrinho e lembretes</div>' +
+        linhaCuidado("reposicao") + linhaCuidado("limpeza") +
+        '<button class="list-line" data-act="editar-msg-cfg"><div><div class="ll-t">Mensagem de lembrete</div>' +
+          '<div class="ll-s">o texto que vai para os participantes no WhatsApp</div></div>' + ICONS.zap + "</button>" +
+        '<button class="list-line" data-act="avisos"><div><div class="ll-t">Aviso no celular</div>' +
+          '<div class="ll-s">' + (cfg.avisos ? "ligado" : "desligado") + "</div></div>" + ICONS.sino + "</button>" +
         '<div class="group-label">Saudação</div>' +
         '<button class="list-line" data-act="nome"><div><div class="ll-t">Seu nome</div>' +
           '<div class="ll-s">' + (cfg.nome ? esc(cfg.nome) : "toque para escrever como quer ser chamado") + "</div></div>" + ICONS.chevR + "</button>" +
@@ -787,6 +916,7 @@ function modalTurno(id) {
         [1,2,3,4,5,6,8,10,12].map(n => '<option value="' + n + '">' + (n === 1 ? "Não repetir" : n + " semanas seguidas") + "</option>").join("") +
       "</select></div>") +
     '<button class="btn btn-primary btn-block" id="fSalvar">' + (t ? "Salvar alterações" : "Marcar turno") + "</button>" +
+    (t ? '<button class="btn btn-wa btn-block" style="margin-top:8px" data-act="avisar" data-id="' + t.id + '">' + ICONS.zap + " Avisar participantes</button>" : "") +
     (t ? '<button class="btn btn-danger btn-block" style="margin-top:8px" id="fExcluir">' + ICONS.trash + " Excluir turno</button>" : "");
 
   abrirModal(html, back => {
@@ -992,6 +1122,206 @@ function modalSync() {
   });
 }
 
+/* ----- MODAL: REGISTRO DE CUIDADO (reposição / limpeza) ----- */
+function modalCuidado(tipo, id) {
+  const c = id ? vivos("cui").find(x => x.id === id) : null;
+  if (c) tipo = c.tipo;
+  const info = CUIDADOS[tipo];
+  const html =
+    '<div class="modal-title">' + (c ? "Editar registro" : info.nome) + "</div>" +
+    '<div class="field"><label for="cData">Data</label><input id="cData" type="date" value="' + (c ? c.data : hojeIso()) + '" /></div>' +
+    '<div class="field"><label for="cObs">Observação (opcional)</label>' +
+      '<input id="cObs" type="text" value="' + esc(c ? c.obs || "" : "") + '" placeholder="' +
+      (tipo === "reposicao" ? "ex.: repus brochuras e revistas" : "ex.: troquei a roda e lavei as bandejas") + '" /></div>' +
+    '<div class="field"><label for="cPor">Quem fez (opcional)</label>' +
+      '<input id="cPor" type="text" value="' + esc(c ? c.por || "" : (cfg.nome || "")) + '" placeholder="nome" /></div>' +
+    '<button class="btn btn-primary btn-block" id="cSalvar">Salvar</button>' +
+    (c ? '<button class="btn btn-danger btn-block" style="margin-top:8px" id="cExcluir">' + ICONS.trash + " Excluir registro</button>" : "");
+
+  abrirModal(html, back => {
+    $("#cSalvar", back).addEventListener("click", () => {
+      const data = $("#cData", back).value;
+      if (!data) { toast("Escolha a data"); return; }
+      const dados = { tipo, data, obs: $("#cObs", back).value.trim(), por: $("#cPor", back).value.trim(), at: agora() };
+      if (c) Object.assign(c, dados); else DB.cui.push(Object.assign({ id: uid() }, dados));
+      salvar(); voltar(); render();
+      const prox = proximoCuidado(tipo);
+      toast(prox ? "Anotado. Próxima em " + fmtBr(prox) : "Anotado");
+    });
+    const bx = $("#cExcluir", back);
+    if (bx) bx.addEventListener("click", () => {
+      if (!confirm("Excluir este registro?")) return;
+      c.rm = true; c.at = agora(); salvar(); voltar(); render(); toast("Excluído");
+    });
+  });
+}
+
+/* ----- MODAL: DE QUANTO EM QUANTO TEMPO ----- */
+function modalIntervalo(tipo) {
+  const info = CUIDADOS[tipo];
+  const atual = intervalo(tipo);
+  const atalhos = [7, 15, 21, 30, 45, 60, 90];
+  const html =
+    '<div class="modal-title">' + info.curto + " a cada quantos dias?</div>" +
+    '<div class="hint">O app soma esse tanto de dias à última data registrada e avisa quando estiver chegando a hora.</div>' +
+    '<div class="row wrap gap8" style="margin:14px 0">' +
+      atalhos.map(n => '<button type="button" class="chip' + (n === atual ? " on" : "") + '" data-atalho="' + n + '">' + n + " dias</button>").join("") +
+    "</div>" +
+    '<div class="field"><label for="iDias">Ou digite</label>' +
+      '<input id="iDias" type="number" min="1" max="365" inputmode="numeric" value="' + atual + '" /></div>' +
+    '<button class="btn btn-primary btn-block" id="iSalvar">Salvar</button>';
+
+  abrirModal(html, back => {
+    back.querySelectorAll("[data-atalho]").forEach(b => b.addEventListener("click", () => {
+      $("#iDias", back).value = b.getAttribute("data-atalho");
+      back.querySelectorAll("[data-atalho]").forEach(x => x.classList.remove("on"));
+      b.classList.add("on");
+    }));
+    $("#iSalvar", back).addEventListener("click", () => {
+      const n = parseInt($("#iDias", back).value, 10);
+      if (!(n > 0 && n <= 365)) { toast("Escolha um número entre 1 e 365"); return; }
+      cfg[info.campo] = n; salvarCfg(); voltar(); render();
+      toast(info.curto + " a cada " + n + " dias");
+    });
+  });
+}
+
+/* ----- LEMBRETE NO CALENDÁRIO (.ics) ----- */
+function baixarIcs(titulo, isoData, descricao) {
+  const d = isoData.replace(/-/g, "");
+  const prox = iso(somaDias(deIso(isoData), 1)).replace(/-/g, "");
+  const linhas = [
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Bora pro Carrinho//PT-BR",
+    "BEGIN:VEVENT",
+    "UID:" + uid() + "@bora-pro-carrinho",
+    "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z",
+    "DTSTART;VALUE=DATE:" + d,
+    "DTEND;VALUE=DATE:" + prox,
+    "SUMMARY:" + titulo,
+    "DESCRIPTION:" + (descricao || ""),
+    "BEGIN:VALARM", "TRIGGER:-PT9H", "ACTION:DISPLAY", "DESCRIPTION:" + titulo, "END:VALARM",
+    "END:VEVENT", "END:VCALENDAR"
+  ];
+  const blob = new Blob([linhas.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "lembrete-carrinho.ics";
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  toast("Abra o arquivo para salvar no calendário");
+}
+
+/* ----- AVISO NO CELULAR ----- */
+async function alternarAvisos() {
+  if (cfg.avisos) { cfg.avisos = false; salvarCfg(); render(); toast("Avisos desligados"); return; }
+  if (!("Notification" in window)) { toast("Este aparelho não mostra avisos"); return; }
+  let permissao = Notification.permission;
+  if (permissao !== "granted") { try { permissao = await Notification.requestPermission(); } catch (e) {} }
+  if (permissao !== "granted") { toast("Você precisa permitir os avisos no navegador"); return; }
+  cfg.avisos = true; salvarCfg(); render(); toast("Avisos ligados");
+}
+function conferirCuidados() {
+  if (!cfg.avisos || !("Notification" in window) || Notification.permission !== "granted") return;
+  const hoje = hojeIso();
+  if (cfg.ultimoAviso === hoje) return;
+  const pendentes = Object.keys(CUIDADOS).filter(t => {
+    const s = situacaoCuidado(t);
+    return s.estado === "atrasado" || s.estado === "hoje";
+  });
+  if (!pendentes.length) return;
+  cfg.ultimoAviso = hoje; salvarCfg();
+  const nomes = pendentes.map(t => CUIDADOS[t].curto).join(" e ");
+  try {
+    new Notification("Bora pro Carrinho?", {
+      body: nomes + ": está na hora.",
+      icon: "icone-192.png", badge: "icone-192.png", tag: "cuidados"
+    });
+  } catch (e) {}
+}
+
+/* ----- LEMBRETE DE TURNO PELO WHATSAPP ----- */
+function soDigitos(t) { return String(t || "").replace(/\D/g, ""); }
+function telefoneZap(t) {
+  const n = soDigitos(t);
+  if (!n) return "";
+  if (n.length >= 12) return n;                 // já tem código do país
+  if (n.length === 10 || n.length === 11) return "55" + n;
+  return n;
+}
+function textoAviso(t, nome) {
+  const l = loc(t.locId) || { nome: "sem local" };
+  const mod = (MODALIDADES.find(m => m.id === t.mod) || MODALIDADES[0]).nome;
+  return (cfg.msgTurno || "")
+    .replace(/{nome}/g, nome || "")
+    .replace(/{dia}/g, cap1(fmtLongo(deIso(t.data))))
+    .replace(/{data}/g, fmtBr(t.data))
+    .replace(/{inicio}/g, t.ini)
+    .replace(/{fim}/g, t.fim)
+    .replace(/{local}/g, l.nome)
+    .replace(/{modalidade}/g, mod)
+    .replace(/\s+\n/g, "\n")
+    .trim();
+}
+function modalAvisar(turnoId) {
+  const t = tur(turnoId);
+  if (!t) return;
+  const escolhidos = (t.pes || []).map(id => pes(id)).filter(Boolean).sort(ordenaNome);
+  if (!escolhidos.length) {
+    abrirModal('<div class="modal-title">Sem participantes</div>' +
+      '<div class="hint">Este turno ainda não tem ninguém escolhido. Edite o turno e adicione os participantes antes de avisar.</div>');
+    return;
+  }
+  const linhas = escolhidos.map(p => {
+    const fone = telefoneZap(p.tel);
+    const msg = encodeURIComponent(textoAviso(t, p.nome.split(/\s+/)[0]));
+    return '<div class="list-line">' +
+        '<div class="row gap10" style="flex:1;min-width:0">' +
+          '<span class="avatar mini-avatar" style="background:' + corDe(p.nome) + '">' + esc(iniciais(p.nome)) + "</span>" +
+          '<div style="min-width:0"><div class="ll-t">' + esc(p.nome) + "</div>" +
+          '<div class="ll-s">' + (fone ? esc(p.tel) : "sem telefone cadastrado") + "</div></div>" +
+        "</div>" +
+        (fone
+          ? '<a class="btn btn-wa" style="padding:8px 12px" href="https://wa.me/' + fone + "?text=" + msg + '" target="_blank" rel="noopener">' + ICONS.zap + " Enviar</a>"
+          : '<button class="btn btn-secondary" style="padding:8px 12px" data-act="editar-pessoa" data-id="' + p.id + '">Cadastrar</button>') +
+      "</div>";
+  }).join("");
+
+  const exemplo = textoAviso(t, escolhidos[0].nome.split(/\s+/)[0]);
+  const html =
+    '<div class="modal-title">Avisar pelo WhatsApp</div>' +
+    '<div class="msg-box">' + esc(exemplo) + "</div>" +
+    '<div class="row gap8" style="margin:10px 0 16px">' +
+      '<button class="btn btn-secondary" style="flex:1" data-act="copiar-aviso" data-id="' + t.id + '">' + ICONS.copy + " Copiar</button>" +
+      '<button class="btn btn-secondary" style="flex:1" data-act="editar-msg">Editar modelo</button>' +
+    "</div>" +
+    '<div class="group-label" style="margin-top:0">Participantes</div>' + linhas +
+    '<div class="hint" style="margin-top:12px">O WhatsApp abre com a mensagem pronta; é só tocar em enviar. Quem não tem telefone cadastrado aparece com o botão para cadastrar.</div>';
+  abrirModal(html);
+}
+
+/* ----- MODAL: MODELO DA MENSAGEM ----- */
+function modalModelo() {
+  const padrao = "Ola {nome}, lembrete do turno com o carrinho: {dia}, das {inicio} as {fim}, em {local}. Ate la.";
+  const html =
+    '<div class="modal-title">Modelo da mensagem</div>' +
+    '<div class="hint">Use as marcações entre chaves — o app troca cada uma pelos dados do turno:<br>' +
+      '<b>{nome}</b> primeiro nome · <b>{dia}</b> dia por extenso · <b>{data}</b> dd/mm/aaaa · ' +
+      '<b>{inicio}</b> e <b>{fim}</b> horários · <b>{local}</b> · <b>{modalidade}</b></div>' +
+    '<div class="field" style="margin-top:14px"><label for="mTexto">Mensagem</label>' +
+      '<textarea id="mTexto" rows="5">' + esc(cfg.msgTurno || padrao) + "</textarea></div>" +
+    '<button class="btn btn-primary btn-block" id="mSalvar">Salvar</button>' +
+    '<button class="btn btn-ghost btn-block" style="margin-top:8px" id="mPadrao">Voltar ao modelo original</button>';
+  abrirModal(html, back => {
+    $("#mSalvar", back).addEventListener("click", () => {
+      cfg.msgTurno = $("#mTexto", back).value.trim() || padrao;
+      salvarCfg(); voltar(); render(); toast("Modelo salvo");
+    });
+    $("#mPadrao", back).addEventListener("click", () => {
+      $("#mTexto", back).value = padrao;
+    });
+  });
+}
+
 function modalGrupo() {
   const html =
     '<div class="modal-title">Código do grupo</div>' +
@@ -1159,6 +1489,35 @@ document.addEventListener("click", async e => {
     case "editar-local": modalLocal(id); break;
     case "copiar": copiarEscala(el.getAttribute("data-alvo")); break;
     case "grupo": modalGrupo(); break;
+    case "cuidados-abrir":
+      estado.cuidadoTipo = el.getAttribute("data-tipo") || "reposicao";
+      estado.cuidadosAberto = true;
+      abrirCamada(() => { estado.cuidadosAberto = false; render(); });
+      render(); break;
+    case "cuidados-fechar": voltar(); break;
+    case "cuidado-aba": estado.cuidadoTipo = el.getAttribute("data-tipo"); render(); break;
+    case "cuidado-novo": modalCuidado(el.getAttribute("data-tipo"), null); break;
+    case "cuidado-editar": modalCuidado(null, id); break;
+    case "cuidado-intervalo": modalIntervalo(el.getAttribute("data-tipo")); break;
+    case "cuidado-agenda": {
+      const tp = el.getAttribute("data-tipo");
+      const prox = proximoCuidado(tp);
+      if (!prox) { toast("Registre a última vez primeiro"); break; }
+      baixarIcs(CUIDADOS[tp].nome + " do carrinho", prox, "Lembrete criado pelo Bora pro Carrinho?");
+      break;
+    }
+    case "avisos": await alternarAvisos(); break;
+    case "avisar": if (camadas.length) voltar(); setTimeout(() => modalAvisar(id), camadas.length ? 60 : 0); break;
+    case "editar-msg": voltar(); setTimeout(modalModelo, 60); break;
+    case "editar-msg-cfg": modalModelo(); break;
+    case "copiar-aviso": {
+      const t = tur(id);
+      if (t) {
+        const p1 = (t.pes || []).map(x => pes(x)).filter(Boolean).sort(ordenaNome)[0];
+        copiar(textoAviso(t, p1 ? p1.nome.split(/\s+/)[0] : ""));
+      }
+      break;
+    }
     case "nome": modalNome(); break;
     case "sync-detalhe": modalSync(); break;
     case "exportar": exportar(); break;
@@ -1166,7 +1525,7 @@ document.addEventListener("click", async e => {
     case "exemplo": dadosExemplo(); break;
     case "limpar":
       if (confirm("Apagar todos os dados deste aparelho? A cópia na nuvem continua.")) {
-        localStorage.removeItem(K_DB); DB = { pes: [], loc: [], tur: [] }; render(); toast("Dados apagados");
+        localStorage.removeItem(K_DB); DB = { pes: [], loc: [], tur: [], cui: [] }; render(); toast("Dados apagados");
       }
       break;
 
@@ -1221,6 +1580,7 @@ document.addEventListener("visibilitychange", () => {
 carregar();
 aplicarTema();
 render();
+setTimeout(conferirCuidados, 1200);
 
 (async () => {
   try { await iniciarFirebase(); } catch (e) { console.warn("firebase:", e.message); cfg.modoLocal = true; }

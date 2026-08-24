@@ -8,7 +8,7 @@ Escala de turnos do testemunho público com carrinho. PWA em JavaScript puro, se
 | --- | --- |
 | `index.html` | Página do app. **É aqui que ficam os dados do Firebase.** |
 | `estilo.css` | Todo o visual: paletas, modo escuro, fontes, componentes. |
-| `app.js` | O aplicativo: agenda, turnos, participantes, locais, login e sincronização. |
+| `app.js` | O aplicativo: agenda, turnos, participantes, locais, cuidados do carrinho, lembretes, login e sincronização. |
 | `sw.js` | Service worker (funciona offline). Tem a constante `VERSAO`. |
 | `manifest.webmanifest` | Nome, cores e ícones da instalação. |
 | `instalar.html` | Página de instalação para mandar no grupo. |
@@ -92,9 +92,36 @@ Também confira, em **Authentication → Settings → Authorized domains**, se `
 
 Dentro do app: **engrenagem → Conta e sincronização → Código do grupo**. Todo mundo que digitar o mesmo código vê e edita a mesma escala. Em branco, os dados ficam só na conta de quem entrou.
 
+## Cuidados do carrinho e lembretes
+
+Na tela inicial, embaixo da semana, ficam duas linhas: **Reposição** de publicações e **Limpeza e manutenção**. Tocando em qualquer uma delas abre a tela de cuidados, onde dá para:
+
+- registrar a data de hoje (com observação e quem fez);
+- escolher de quanto em quanto tempo repetir (7, 15, 21, 30, 45, 60, 90 dias ou um número seu);
+- ver o histórico completo de cada tipo;
+- ligar o **aviso no celular** (aparece quando você abre o app e a data chegou ou passou);
+- **pôr no calendário**, que baixa um arquivo `.ics` com alarme na véspera — esse é o lembrete que toca mesmo com o app fechado.
+
+As datas ficam no mesmo documento da escala, então quem usa o mesmo código de grupo vê os mesmos registros.
+
+## Lembrete de turno pelo WhatsApp
+
+Toque no turno → **Avisar participantes**. O app monta a mensagem sem emojis e abre o WhatsApp já com o texto pronto para cada pessoa (usa o telefone cadastrado no participante; sem telefone, aparece o botão para cadastrar).
+
+O texto é editável em Configurações → **Mensagem de lembrete**, com estas marcações:
+
+| Marcação | Vira |
+| --- | --- |
+| `{nome}` | primeiro nome do participante |
+| `{dia}` | dia por extenso (ex.: Segunda-feira, 24 de agosto) |
+| `{data}` | 24/08/2026 |
+| `{inicio}` / `{fim}` | horários do turno |
+| `{local}` | nome do local |
+| `{modalidade}` | Carrinho, Display ou Mesa |
+
 ## Como os dados são guardados
 
-- No aparelho: `localStorage`, nas chaves `bora:db` (escala) e `bora:cfg` (preferências).
+- No aparelho: `localStorage`, nas chaves `bora:db` (escala, com `pes`, `loc`, `tur` e `cui`) e `bora:cfg` (preferências).
 - Na nuvem: coleção `carrinhos`, um documento por grupo (ou por usuário), com `{ dados, atualizadoEm, por }`.
 - A junção é por item e por horário de alteração (`at`): vence a versão mais recente. Nada é apagado de verdade — itens excluídos ficam marcados com `rm: true`, o que evita que voltem do outro aparelho.
 
