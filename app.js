@@ -10,7 +10,7 @@
 --------------------------------------------------------------- */
 const firebaseConfig = window.FIREBASE_CONFIG || {};
 
-const VERSAO = "bora-v4";
+const VERSAO = "bora-v6";
 const SDK = "https://www.gstatic.com/firebasejs/10.12.5/";
 
 /* ---------- 2. CONSTANTES ---------- */
@@ -137,7 +137,7 @@ const K_DB = "bora:db", K_CFG = "bora:cfg";
 let DB = { pes: [], loc: [], tur: [] };
 let cfg = {
   tema: "claro", paleta: "azul", fonte: "inter", tamanho: "md",
-  grupo: "", modoLocal: false, ultimoEmail: ""
+  grupo: "", modoLocal: false, ultimoEmail: "", nome: ""
 };
 
 function carregar() {
@@ -277,15 +277,33 @@ function refDoc() {
   const alvo = (cfg.grupo || "").trim().toLowerCase() || ("u_" + estado.usuario.uid);
   return FB.f.doc(FB.db, "carrinhos", alvo);
 }
+function guardaErroSync(origem, e) {
+  estado.sync = "erro";
+  estado.syncCodigo = (e && e.code) || "";
+  estado.syncMsg = (e && e.message) || String(e);
+  console.warn("sync (" + origem + "):", estado.syncCodigo, estado.syncMsg);
+}
+function textoErroSync() {
+  const c = estado.syncCodigo || "";
+  if (c.includes("permission-denied"))
+    return "O Firestore recusou o acesso. Publique as regras que estão no README (Firestore Database → Regras).";
+  if (c.includes("unavailable") || c.includes("network"))
+    return "Sem conexão com o Firestore agora. Assim que a internet voltar ele sincroniza sozinho.";
+  if (c.includes("not-found") || c.includes("failed-precondition"))
+    return "O banco de dados ainda não foi criado no projeto (Firestore Database → Criar banco de dados).";
+  if (c.includes("unauthenticated")) return "A sessão expirou. Saia da conta e entre de novo.";
+  return estado.syncMsg || "Erro desconhecido.";
+}
 function assinarNuvem() {
   if (!FB || !estado.usuario) return;
   if (unsub) { unsub(); unsub = null; }
-  estado.sync = "on";
+  estado.sync = "on"; estado.syncCodigo = ""; estado.syncMsg = "";
   unsub = FB.f.onSnapshot(refDoc(), snap => {
     const d = snap.data();
-    if (d && d.dados) { mesclar(d.dados); salvarLocal(); render(); }
-    estado.sync = "on";
-  }, err => { estado.sync = "erro"; console.warn("sync:", err.message); render(); });
+    estado.sync = "on"; estado.syncCodigo = ""; estado.syncMsg = "";
+    if (d && d.dados) { mesclar(d.dados); salvarLocal(); }
+    render();
+  }, err => { guardaErroSync("leitura", err); render(); });
 }
 function enviarNuvem() {
   if (!FB || !estado.usuario) return;
@@ -295,9 +313,16 @@ function enviarNuvem() {
       await FB.f.setDoc(refDoc(), {
         dados: DB, atualizadoEm: agora(), por: estado.usuario.email || ""
       }, { merge: true });
-      estado.sync = "on";
-    } catch (e) { estado.sync = "erro"; console.warn("envio:", e.message); }
+      if (estado.sync !== "on") { estado.sync = "on"; estado.syncCodigo = ""; estado.syncMsg = ""; render(); }
+      else estado.sync = "on";
+    } catch (e) { guardaErroSync("envio", e); render(); }
   }, 700);
+}
+function tentarSincronizar() {
+  if (!FB || !estado.usuario) { toast("Entre com e-mail e senha primeiro"); return; }
+  estado.sync = "on"; estado.syncCodigo = ""; estado.syncMsg = "";
+  assinarNuvem(); enviarNuvem(); render();
+  toast("Tentando sincronizar…");
 }
 function erroAuth(e) {
   const c = (e && e.code) || "";
@@ -423,7 +448,7 @@ function inicioHTML() {
 
   const hora = new Date().getHours();
   const saud = hora < 12 ? "Bom dia" : hora < 18 ? "Boa tarde" : "Boa noite";
-  const quem = estado.usuario ? (estado.usuario.email || "").split("@")[0] : "";
+  const quem = (cfg.nome || "").trim();
 
   let hoje;
   if (doDia.length) {
@@ -434,7 +459,7 @@ function inicioHTML() {
   }
 
   return '<div class="container" style="padding-top:16px">' +
-    '<div class="eyebrow">' + saud + (quem ? ", " + esc(quem) : "") + "</div>" +
+    '<button class="saudacao" data-act="nome">' + saud + (quem ? ", " + esc(quem) : "") + "</button>" +
     '<div class="row between" style="margin:10px 0 12px">' +
       '<div class="section-title" style="margin:0">Hoje, ' + esc(fmtCurto(new Date())) + "</div>" +
       (doDia.length ? '<button class="chip" data-act="copiar" data-alvo="dia">' + ICONS.copy + " Copiar</button>" : "") +
@@ -631,9 +656,9 @@ function cfgHTML() {
     ? '<div class="list-line"><div><div class="ll-t">Somente neste aparelho</div>' +
       '<div class="ll-s">' + (configPronta() ? "Você escolheu usar sem conta." : "Firebase ainda não configurado no index.html.") + "</div></div></div>" +
       '<button class="btn btn-secondary btn-block" data-act="ir-login">Entrar com e-mail e senha</button>'
-    : '<div class="list-line"><div><div class="ll-t">' + esc((estado.usuario && estado.usuario.email) || "") + "</div>" +
-        '<div class="ll-s">' + (estado.sync === "erro" ? "Sincronização com erro" : "Sincronizando na nuvem") + "</div></div>" +
-        '<span class="sync-dot" style="background:' + (estado.sync === "erro" ? "var(--danger)" : "var(--ok)") + '"></span></div>' +
+    : '<button class="list-line" data-act="sync-detalhe"><div><div class="ll-t">' + esc((estado.usuario && estado.usuario.email) || "") + "</div>" +
+        '<div class="ll-s">' + (estado.sync === "erro" ? "Sincronização com erro — toque para ver" : "Sincronizando na nuvem") + "</div></div>" +
+        '<span class="sync-dot" style="background:' + (estado.sync === "erro" ? "var(--danger)" : "var(--ok)") + '"></span></button>' +
       '<button class="list-line" data-act="grupo"><div><div class="ll-t">Código do grupo</div>' +
         '<div class="ll-s">' + (cfg.grupo ? esc(cfg.grupo) : "só você vê estes dados") + "</div></div>" + ICONS.chevR + "</button>" +
       '<button class="btn btn-ghost btn-block" style="margin-top:6px" data-act="sair">' + ICONS.logout + " Sair da conta</button>";
@@ -654,6 +679,9 @@ function cfgHTML() {
         '<div class="hint" style="margin-top:10px">O fundo do app acompanha a cor escolhida: um tom bem claro no modo claro, e preto com um toque da cor no modo escuro.</div>' +
         '<div class="group-label">Fonte</div><div class="font-list">' + fontes + "</div>" +
         '<div class="group-label">Tamanho da fonte</div><div class="size-row">' + tamanhos + "</div>" +
+        '<div class="group-label">Saudação</div>' +
+        '<button class="list-line" data-act="nome"><div><div class="ll-t">Seu nome</div>' +
+          '<div class="ll-s">' + (cfg.nome ? esc(cfg.nome) : "toque para escrever como quer ser chamado") + "</div></div>" + ICONS.chevR + "</button>" +
         '<div class="group-label">Conta e sincronização</div>' + conta +
         '<div class="group-label">Dados</div>' +
         '<button class="list-line" data-act="exportar"><div><div class="ll-t">Salvar cópia (arquivo .json)</div>' +
@@ -928,6 +956,42 @@ function modalLocal(id) {
 }
 
 /* ----- MODAL: CÓDIGO DO GRUPO ----- */
+/* ----- MODAL: SEU NOME (saudação) ----- */
+function modalNome() {
+  const html =
+    '<div class="modal-title">Como quer ser chamado?</div>' +
+    '<div class="hint">O nome aparece na saudação da tela inicial: "Bom dia, ' + esc((cfg.nome || "Alan").trim() || "Alan") + '". Deixe em branco para mostrar só a saudação.</div>' +
+    '<div class="field" style="margin-top:14px"><label for="nNome">Nome</label>' +
+      '<input id="nNome" type="text" value="' + esc(cfg.nome || "") + '" placeholder="Alan" maxlength="30" /></div>' +
+    '<button class="btn btn-primary btn-block" id="nSalvar">Salvar</button>';
+  abrirModal(html, back => {
+    setTimeout(() => { const n = $("#nNome", back); if (n) { n.focus(); n.selectionStart = n.selectionEnd = n.value.length; } }, 60);
+    $("#nSalvar", back).addEventListener("click", () => {
+      cfg.nome = $("#nNome", back).value.trim();
+      salvarCfg(); voltar(); render();
+      toast(cfg.nome ? "Prazer, " + cfg.nome : "Saudação sem nome");
+    });
+  });
+}
+
+/* ----- MODAL: ESTADO DA SINCRONIZAÇÃO ----- */
+function modalSync() {
+  const alvo = (cfg.grupo || "").trim().toLowerCase() || ("u_" + ((estado.usuario && estado.usuario.uid) || ""));
+  const ok = estado.sync !== "erro";
+  const html =
+    '<div class="modal-title">' + (ok ? "Sincronização ativa" : "Sincronização com erro") + "</div>" +
+    '<div class="list-line"><div><div class="ll-t">Conta</div><div class="ll-s">' + esc((estado.usuario && estado.usuario.email) || "") + "</div></div></div>" +
+    '<div class="list-line"><div><div class="ll-t">Documento na nuvem</div><div class="ll-s">carrinhos / ' + esc(alvo) + "</div></div></div>" +
+    (ok
+      ? '<div class="hint" style="margin-top:8px">Tudo o que você marcar aqui aparece nos outros aparelhos que entrarem com este mesmo e-mail. Para dividir a escala com outras pessoas, use o mesmo código de grupo em todos os celulares.</div>'
+      : '<div class="auth-msg err" style="margin-top:10px">' + esc(textoErroSync()) + "</div>" +
+        (estado.syncCodigo ? '<div class="hint">Código do erro: ' + esc(estado.syncCodigo) + "</div>" : "")) +
+    '<button class="btn btn-primary btn-block" style="margin-top:14px" id="sTentar">Tentar sincronizar agora</button>';
+  abrirModal(html, back => {
+    $("#sTentar", back).addEventListener("click", () => { voltar(); tentarSincronizar(); });
+  });
+}
+
 function modalGrupo() {
   const html =
     '<div class="modal-title">Código do grupo</div>' +
@@ -1095,6 +1159,8 @@ document.addEventListener("click", async e => {
     case "editar-local": modalLocal(id); break;
     case "copiar": copiarEscala(el.getAttribute("data-alvo")); break;
     case "grupo": modalGrupo(); break;
+    case "nome": modalNome(); break;
+    case "sync-detalhe": modalSync(); break;
     case "exportar": exportar(); break;
     case "importar": importar(); break;
     case "exemplo": dadosExemplo(); break;
@@ -1144,6 +1210,12 @@ async function autenticar() {
     render();
   }
 }
+
+/* tenta de novo sozinho quando a internet volta ou o app reabre */
+window.addEventListener("online", () => { if (estado.sync === "erro") tentarSincronizar(); });
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && estado.sync === "erro" && FB && estado.usuario) { assinarNuvem(); enviarNuvem(); }
+});
 
 /* ----- INÍCIO ----- */
 carregar();

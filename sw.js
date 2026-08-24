@@ -4,7 +4,7 @@
    VERSAO abaixo (bora-v1 → bora-v2 → ...). É isso que faz o
    celular baixar os arquivos novos em vez de usar os antigos.
    ============================================================ */
-const VERSAO = "bora-v4";
+const VERSAO = "bora-v6";
 const CACHE_APP = "bora-app-" + VERSAO;
 const CACHE_EXT = "bora-ext-" + VERSAO;
 

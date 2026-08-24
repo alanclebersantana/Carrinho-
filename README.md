@@ -55,22 +55,38 @@ Essas chaves são públicas por natureza (ficam no navegador de quem usa). Quem 
 
 ### Regras do Firestore
 
-Cole em **Firestore Database → Regras**:
+Sem publicar as regras, o Firestore recusa tudo e o app mostra o ponto vermelho de "Sincronização com erro". Cole em **Firestore Database → Regras** e clique em **Publicar**:
 
 ```
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // escala pessoal: só o dono lê e escreve
     match /carrinhos/{doc} {
-      allow read, write: if request.auth != null
-        && (doc == "u_" + request.auth.uid || !doc.matches("^u_.*"));
+      allow read, write: if request.auth != null;
     }
   }
 }
 ```
 
-Ou seja: o documento pessoal (`u_<uid>`) é privado, e os documentos de grupo (qualquer outro nome, como `carrinho-central`) ficam abertos para qualquer pessoa **logada** — que é o que permite a congregação editar a mesma escala. Se quiser fechar mais, troque a última condição por uma lista de códigos permitidos.
+Ou seja: só quem entrou com e-mail e senha lê e escreve — que é o que permite a congregação editar a mesma escala. Se quiser fechar mais, troque a condição por uma lista de códigos permitidos, por exemplo:
+
+```
+allow read, write: if request.auth != null
+  && (doc == "u_" + request.auth.uid || doc in ["carrinho-central", "carrinho-norte"]);
+```
+
+### Quando aparece o ponto vermelho
+
+Em Configurações, toque na linha do seu e-mail: o app mostra o código do erro e qual documento está tentando usar.
+
+| O que aparece | O que fazer |
+| --- | --- |
+| `permission-denied` | As regras acima não foram publicadas. |
+| `not-found` / `failed-precondition` | O Firestore Database ainda não foi criado no projeto. |
+| `unavailable` | Sem internet no momento; ele sincroniza sozinho quando voltar. |
+| `unauthenticated` | Saia da conta e entre de novo. |
+
+Também confira, em **Authentication → Settings → Authorized domains**, se `seu-usuario.github.io` está na lista.
 
 ### Código do grupo
 
